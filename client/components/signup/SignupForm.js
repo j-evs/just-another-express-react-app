@@ -18,12 +18,12 @@ class SignupForm extends React.Component {
   onChange(e) {
     this.setState({
       [e.target.name]: e.target.value
-    })
+    });
   }
 
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
+    this.props.userSignupRequest(this.state);
   }
   render() {
     return (
@@ -40,11 +40,21 @@ class SignupForm extends React.Component {
           />
         </div>
         <div className="form-group">
-          <label className="control-label">Password</label>
+          <label className="control-label">Email</label>
           <input
-            value={this.state.username}
+            value={this.state.email}
             onChange={this.onChange}
             type="text"
+            name="email"
+            className="form-control"
+          />
+        </div>
+        <div className="form-group">
+          <label className="control-label">Password</label>
+          <input
+            value={this.state.password}
+            onChange={this.onChange}
+            type="password"
             name="password"
             className="form-control"
           />
@@ -52,9 +62,9 @@ class SignupForm extends React.Component {
         <div className="form-group">
           <label className="control-label">Password confirmation</label>
           <input
-            value={this.state.username}
+            value={this.state.passwordConfirmation}
             onChange={this.onChange}
-            type="text"
+            type="password"
             name="passwordConfirmation"
             className="form-control"
           />
@@ -68,6 +78,10 @@ class SignupForm extends React.Component {
       </form>
     );
   }
+};
+
+SignupForm.propTypes = {
+  userSignupRequest: React.PropTypes.func.isRequired
 };
 
 export default SignupForm;
