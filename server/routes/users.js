@@ -6,8 +6,8 @@ let router = express.Router();
 
 function validateInput(data) {
   let errors = {};
-  if (Validator.isEmpty(data.email)) {
-    errors.email = 'This field is requred';
+  if (Validator.isEmpty(data.username)) {
+    errors.username = 'This field is requred';
   }
   if(!Validator.isEmail(data.email)) {
     errors.email = 'Email is invalid';
