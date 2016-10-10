@@ -4,8 +4,7 @@ import webpack from 'webpack';
 export default {
   devtools: 'eval-source-map',
   entry: [
-    'react-hot-loader/patch',
-    'webpack-hot-middleware/client',
+    
     path.join(__dirname, '/client/index.js')],
   output: {
     path: '/',
@@ -13,14 +12,16 @@ export default {
   },
   plugins: [
     new webpack.NoErrorsPlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.optimize.OccurenceOrderPlugin()
   ],
   module: {
     loaders: [
       {
         test: /\.js$/,
-        include: path.join(__dirname, 'client'),
+        include: [
+          path.join(__dirname, 'client'),
+          path.join(__dirname, 'server/shared')
+        ],
         loaders: [ 'babel' ]
       }
     ]
