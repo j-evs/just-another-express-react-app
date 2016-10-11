@@ -1,6 +1,5 @@
-import { render } from 'react-dom';
-
 import React from 'react';
+import { render } from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -12,8 +11,8 @@ import routes from './components/routes';
 const store = createStore(
   rootReducer,
   compose(
-  applyMiddleware(thunk),
-  window.devToolsExtension ? window.devToolsExtension() : f => f
+    applyMiddleware(thunk),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 );
 
