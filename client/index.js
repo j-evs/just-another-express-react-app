@@ -1,18 +1,25 @@
-import React from 'react';
 import { render } from 'react-dom';
-import Root from './components/Root';
-import { AppContainer } from 'react-hot-loader';
 
-render(<AppContainer><Root /></AppContainer>, document.getElementById('app'));
+import React from 'react';
+import { Router, browserHistory } from 'react-router';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import {createStore, applyMiddleware, compose} from 'redux';
+import rootReducer from './rootReducer';
 
-if (module.hot) {
-  module.hot.accept('./components/Root', () => {
-    const Root = require('./components/Root');
-    render (
-      <AppContainer>
-        <Root />
-      </AppContainer>,
-      document.getElementById('app')
-    );
-  });
-}
+import routes from './components/routes';
+
+const store = createStore(
+  rootReducer,
+  compose(
+  applyMiddleware(thunk),
+  window.devToolsExtension ? window.devToolsExtension() : f => f
+  )
+);
+
+render(
+    <Provider store={store}>
+      <Router history={browserHistory} routes={routes} />
+    </Provider>,
+    document.getElementById('app')
+  );
