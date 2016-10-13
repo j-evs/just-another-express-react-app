@@ -1,5 +1,5 @@
 // Update with your config settings.
-
+import dbpassword from './dbpassword';
 module.exports = {
 
   development: {
@@ -7,7 +7,7 @@ module.exports = {
       connection: {
         database: 'postgres',
         user:     'postgres',
-        password: 'postgres123'
+        password: dbpassword
       },
       pool: {
         min: 2,
