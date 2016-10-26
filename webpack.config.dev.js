@@ -4,7 +4,7 @@ import webpack from 'webpack';
 export default {
   devtools: 'eval-source-map',
   entry: [
-    
+
     path.join(__dirname, '/client/index.js')],
   output: {
     path: '/',
@@ -28,5 +28,9 @@ export default {
   },
   resolve: {
     extentions: [ '', '.js' ]
+  },
+  node: {
+    net: 'empty',
+    dns: 'empty'
   }
 }
